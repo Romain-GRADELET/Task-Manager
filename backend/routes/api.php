@@ -29,12 +29,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * Route permettant d'afficher la liste des taches
  *--------------------------------------------------------------------------
  * Méthode HTTP : GET
- * Chemin : http://localhost:8000/api/categories
+ * Chemin : http://localhost:8000/api/tasks
  * Controller : TaskController
  * Méthode : findAll()
  * Nom de la route : task-list
  */
-Route::get('/categories', [
+Route::get('/tasks', [
     TaskController::class,
     'findAll'
 ])->name('task-list');
