@@ -11,9 +11,9 @@ class CategoryController extends Controller
         return Category::all();
     }
 
-    public function show($id)
+    public function find($id)
     {
-        return Category::find($id);
+        return Category::findOrFail($id);
     }
 
 }
