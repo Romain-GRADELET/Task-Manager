@@ -145,7 +145,7 @@ Route::get('/categories/{id}', [
  * Méthode : add()
  * Nom de la route : category-add
  */
-Route::post('/tasks', [
+Route::post('/categories', [
     CategoryController::class,
     'add'
 ])->name('category-add');
@@ -194,7 +194,7 @@ Route::delete('/categories/{id}', [
  * Méthode : findAll()
  * Nom de la route : tags-list
  */
-Route::get('/tag/list', [
+Route::get('/tags', [
     TagController::class,
     'findAll'
 ])->name('tags-list');
@@ -204,12 +204,57 @@ Route::get('/tag/list', [
  * Route permettant d'afficher un tag précis
  *--------------------------------------------------------------------------
  * Méthode HTTP : GET
- * Chemin : http://localhost:8000/api/tag/{id}
+ * Chemin : http://localhost:8000/api/tags/{id}
  * Controller : TagController
  * Méthode : find()
- * Nom de la route :
+ * Nom de la route : tag-find
  */
-Route::get('/tag/{id}', [
+Route::get('/tags/{id}', [
     TagController::class,
     'find'
-])->where('id', '[0-9]+');
+])->name('tag-find');
+
+/**
+ *--------------------------------------------------------------------------
+ * Route permettant de créer un tag
+ *--------------------------------------------------------------------------
+ * Méthode HTTP : POST
+ * Chemin : http://localhost:8000/api/tags/
+ * Controller : TagController
+ * Méthode : add()
+ * Nom de la route : tag-add
+ */
+Route::post('/tags', [
+    TagController::class,
+    'add'
+])->name('tag-add');
+
+/**
+ *--------------------------------------------------------------------------
+ * Route permettant de modifier un tag précis
+ *--------------------------------------------------------------------------
+ * Méthode HTTP : PUT
+ * Chemin : http://localhost:8000/api/tags/{id}
+ * Controller : TagController
+ * Méthode : update()
+ * Nom de la route :
+ */
+Route::put('/tags/{id}',[
+    TagController::class,
+    'update'
+])->name('tag-update');
+
+/**
+ *--------------------------------------------------------------------------
+ * Route permettant de supprimer un tag précis
+ *--------------------------------------------------------------------------
+ * Méthode HTTP : DELETE
+ * Chemin : http://localhost:8000/api/tags/{id}
+ * Controller : TagController
+ * Méthode : delete()
+ * Nom de la route :
+ */
+Route::delete('/tags/{id}', [
+    TagController::class,
+    'delete'
+])->name('tag-delete');

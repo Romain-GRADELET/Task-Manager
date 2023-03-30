@@ -61,11 +61,7 @@ class TaskController extends Controller
     // Méthode de  suppression d'une tache
     public function delete(Request $request, $id)
     {
-        $title = $request->input( 'title' );
-
         $deleteTask = Task::find($id);
-
-        $deleteTask->title = $title;
 
         // Je sauvegarde les changements en BDD
         $deleteTask->delete();
