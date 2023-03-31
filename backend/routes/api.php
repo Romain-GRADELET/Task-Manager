@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //==========================================================================
 // ROUTE => TASKS
 //==========================================================================
+#region
 /**
  *--------------------------------------------------------------------------
  * Route permettant d'afficher la liste des taches
@@ -44,12 +46,12 @@ Route::get('/tasks', [
  * Route permettant d'afficher une tache en particulier
  *--------------------------------------------------------------------------
  * Méthode HTTP : GET
- * Chemin : http://localhost:8000/api/task/{id}
+ * Chemin : http://localhost:8000/api/tasks/{id}
  * Controller : TaskController
  * Méthode : show()
  * Nom de la route : task-find
  */
-Route::get('/task/{id}', [
+Route::get('/tasks/{id}', [
     TaskController::class,
     'find'
 ])->whereNumber('id')->name('task-find');
@@ -85,11 +87,11 @@ Route::post('/tasks', [
 Route::put('/tasks/{id}', [
     TaskController::class,
     'update'
-])->name('task-update');
+])->whereNumber('id')->name('task-update');
 
 /**
  *--------------------------------------------------------------------------
- * Route permettant de modifier une tache
+ * Route permettant de supprimer une tache
  *--------------------------------------------------------------------------
  * Méthode HTTP : DELETE
  * Chemin : http://localhost:8000/api/tasks/{id}
@@ -100,8 +102,9 @@ Route::put('/tasks/{id}', [
 Route::delete('/tasks/{id}', [
     TaskController::class,
     'delete'
-])->name('task-delete');
+])->whereNumber('id')->name('task-delete');
 
+#endregion
 //==========================================================================
 // ROUTE => CATEGORIES
 //==========================================================================
@@ -133,7 +136,7 @@ Route::get('/categories', [
 Route::get('/categories/{id}', [
     CategoryController::class,
     'find'
-])->name('categories-find');
+])->whereNumber('id')->name('categories-find');
 
 /**
  *--------------------------------------------------------------------------
@@ -163,7 +166,7 @@ Route::post('/categories', [
 Route::put('/categories/{id}', [
     CategoryController::class,
     'update'
-])->name('category-update');
+])->whereNumber('id')->name('category-update');
 
 /**
  *--------------------------------------------------------------------------
@@ -178,7 +181,7 @@ Route::put('/categories/{id}', [
 Route::delete('/categories/{id}', [
     CategoryController::class,
     'delete'
-])->name('category-delete');
+])->whereNumber('id')->name('category-delete');
 
 
 //==========================================================================
@@ -212,7 +215,7 @@ Route::get('/tags', [
 Route::get('/tags/{id}', [
     TagController::class,
     'find'
-])->name('tag-find');
+])->whereNumber('id')->name('tag-find');
 
 /**
  *--------------------------------------------------------------------------
@@ -242,7 +245,7 @@ Route::post('/tags', [
 Route::put('/tags/{id}',[
     TagController::class,
     'update'
-])->name('tag-update');
+])->whereNumber('id')->name('tag-update');
 
 /**
  *--------------------------------------------------------------------------
@@ -257,4 +260,4 @@ Route::put('/tags/{id}',[
 Route::delete('/tags/{id}', [
     TagController::class,
     'delete'
-])->name('tag-delete');
+])->whereNumber('id')->name('tag-delete');

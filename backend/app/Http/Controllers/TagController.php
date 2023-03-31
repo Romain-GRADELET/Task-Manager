@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Tag;
 
 class TagController extends Controller
@@ -28,7 +29,7 @@ class TagController extends Controller
 
         $newTag->label = $label;
 
-        $newTag->save();
+        $newTag->saveOrFail();
 
         return $newTag;
     }
@@ -42,18 +43,18 @@ class TagController extends Controller
 
         $updateTag->label = $label;
 
-        $updateTag->save();
+        $updateTag->saveOrFail();
 
         return $updateTag;
     }
 
     // Méthode permettant de supprimer un Tag précis
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $deleteTag = Tag::findOrFail($id);
 
-        $deleteTag->delete();
+        $deleteTag->deleteOrFail();
 
-        return $deleteTag;
+        return response( null, 204 );
     }
 }

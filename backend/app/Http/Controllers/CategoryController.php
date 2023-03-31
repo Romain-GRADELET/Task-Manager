@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -34,7 +35,7 @@ class CategoryController extends Controller
         $newCategory->name = $name;
 
         // Je sauvegarde les changements en BDD
-        $newCategory->save();
+        $newCategory->saveOrFail();
 
         // Je retourne la tache fraichement créée (automatiquement convertie en JSON encore une fois)
         return $newCategory;
@@ -45,24 +46,24 @@ class CategoryController extends Controller
     {
         $name = $request->input('name');
 
-        $updateCategory = Category::find($id);
+        $updateCategory = Category::findOrFail($id);
 
         $updateCategory->name = $name;
 
-        $updateCategory->save();
+        $updateCategory->saveOrFail();
 
         return $updateCategory;
 
     }
 
     // Méthode pour la suppression d'une catégorie
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
-        $deleteCategory = Category::find($id);
+        $deleteCategory = Category::findOrFail($id);
 
-        $deleteCategory->delete();
+        $deleteCategory->deleteOrFail();
 
-        return $deleteCategory;
+        return response( null, 204 );
     }
 
 }
