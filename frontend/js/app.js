@@ -56,4 +56,12 @@ async function displayTasks(task){
 
 }
 
+
+async function deleteTasks(){
+    
+}
+
+
+
+
 document.addEventListener("DOMContentLoaded", getTasks);
