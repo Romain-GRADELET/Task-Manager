@@ -4,7 +4,7 @@ const taskDelete = {
     },
 
 
-    deleteTaskInDOM: async function(){
+    deleteTaskInDOM: async function(event){
         // On récupère l'ensemble des élément <li> du DOM
         const deleteElement = document.querySelectorAll('li');
         //console.log (deleteElement);
