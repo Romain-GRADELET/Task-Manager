@@ -57,6 +57,8 @@ const taskList = {
         const deleteElement = document.createElement("div");
         // Ajout de la class delete
         deleteElement.classList.add('delete');
+        // Ajout d'un écouteur d'évvènement au click et appel de la méthode deleteTaskInDOM
+        deleteElement.addEventListener ('click', taskDelete.deleteTaskInDOM)
 
         // Création de la balise <div> pour Edit
         const editElement = document.createElement("div");

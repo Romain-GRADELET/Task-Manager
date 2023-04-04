@@ -5,6 +5,7 @@ const app = {
 
         // On déclenche l'init des autres modules
         taskList.init();
+        taskDelete.init();
     }
     
 }
