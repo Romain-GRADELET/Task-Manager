@@ -20,7 +20,14 @@ const taskAdd = {
 
         let newTaskTitle = document.querySelector('#task-title');
         let inputTitle = newTaskTitle.value;
-    
+
+        let allCategory = document.querySelector('#select-category')
+        console.log(allCategory);
+        allCategory.selectedIndex = inputCategoryID;
+
+
+        //let inputCategoryID = newTaskCategory.value;
+
         let response = await fetch ('http://localhost:8000/api/tasks',{
             method: 'POST',
             headers: {
@@ -28,11 +35,11 @@ const taskAdd = {
             },
             body: JSON.stringify({
                 title: inputTitle,
+                category_id: inputCategoryID,
             })
         });
 
         //console.log (response.status); // retourne 201 si insertion en API
-
         if (response.status == 201){
             const addForm = document.querySelector('.modal-dialog');
             addForm.classList.remove('show');
@@ -40,7 +47,8 @@ const taskAdd = {
             const dangerMessage = document.querySelector('.success');
             dangerMessage.removeAttribute('hidden');
 
-            taskList.getAllTasksFromAPI();
+            //setTimeout(() => {location.reload();}, 2000);
+
 
         } else {
             const addForm = document.querySelector('.modal-dialog');
@@ -49,6 +57,7 @@ const taskAdd = {
             const dangerMessage = document.querySelector('.danger');
             dangerMessage.removeAttribute('hidden');
 
+            setTimeout(() => {location.reload();}, 2000);
 
         }
 
