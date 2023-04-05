@@ -212,6 +212,14 @@ button:active {
   background-image: url(../img/edit.png);
 }
 
+.tasklist em {
+  color: red;
+  background-color:#ffac92;
+  border-radius: 10px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
 /**
  * Create task container
  */

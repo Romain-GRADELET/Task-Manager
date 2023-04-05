@@ -12,17 +12,15 @@ class TaskController extends Controller
     // Méthode de lecture de toutes les taches
     public function findAll ()
     {
-        $tasks = Task::all();
+        return Task::all()->load("category");
         // retourne les éléments aux formats JSON et le détail de la clé étrangère category
-        return $tasks->load("category");
     }
 
     // Méthode de lecture d'une tache précise
     public function find ($id)
     {
-        $task = Task::findOrFail($id);
+        return Task::findOrFail($id)->load('category');
 
-        return $task->load("category");
     }
 
     // Méthode d'ajout d'une tache

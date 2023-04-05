@@ -1,7 +1,7 @@
 const taskList = {
     init: async function()
     {
-        console.log ("taskList appelé")
+        //console.log ("taskList appelé")
 
         // Optionnel : vider la <ul> si on ne l'a pas déjà fait dans le HTML
         // let taskListElement = document.querySelector( ".tasklist" );
@@ -16,23 +16,22 @@ const taskList = {
         {
         taskList.insertTaskInDOM( task );
         }
-    
     },
 
     // Méthode qui renvoi la liste des taches depuis l'API
     getAllTasksFromAPI: async function()
     {
-        console.log ("tasklist getAllTasksFromAPI");
+        //console.log ("tasklist getAllTasksFromAPI");
 
         // On fait une requête à l'API grace à fetch
         let response = await fetch ('http://localhost:8000/api/tasks');
         // Ici comme on a await fetch(), on ne reçoit pas une Promise mais la réponse de l'API
-        console.log(response);
+        //console.log(response);
 
         // Il faut encore lire le JSON de cet réponse, et pour cela, on utilise .json() dessus
         // Attention là encore on reçoit Une promise (de lecture du JSON), il faut aussi await
         let jsonData = await response.json();
-        console.log (jsonData);
+        //console.log (jsonData);
 
         // Ici j'ai besoin dans jsonData, le contenu de la réponse converti, je le retourne
         return jsonData;
@@ -53,12 +52,15 @@ const taskList = {
         // On rempli la balise <p>
         pElement.textContent = taskData.title;
 
+        // Création de la balise <em> contenant la catégorie de la tache
+        const emElement = document.createElement("em");
+
         // Création de la balise <div> pour Delete
         const deleteElement = document.createElement("div");
         // Ajout de la class delete
         deleteElement.classList.add('delete');
-        // Ajout d'un écouteur d'évvènement au click et appel de la méthode deleteTaskInDOM
-        deleteElement.addEventListener ('click', taskDelete.deleteTaskInDOM);
+        // Ajout d'un écouteur d'évènement au click et appel de la méthode deleteTaskInDOM
+        deleteElement.addEventListener ('click', taskDelete.handleDeleteTaskInDOM);
 
         // Création de la balise <div> pour Edit
         const editElement = document.createElement("div");
@@ -67,6 +69,13 @@ const taskList = {
 
         // Composition du <li>
         liElement.append(pElement);
+
+        if (taskData.category !== null){
+            // On rempli la balise <em> si la catégorie est renseigné
+            emElement.textContent = taskData.category.name ;
+            pElement.prepend (emElement);
+        }
+
         liElement.append(deleteElement);
         liElement.append(editElement);
 

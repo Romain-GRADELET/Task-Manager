@@ -1,11 +1,11 @@
 const app = {
     init: function()
     {
-        console.log("init");
+        //console.log("init");
 
         // On déclenche l'init des autres modules
         taskList.init();
-        taskDelete.init();
+        taskAdd.init();
     }
     
 }

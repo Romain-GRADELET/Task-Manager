@@ -12,7 +12,8 @@ class Task extends Model
 
     public function category(){
 
-        return $this->belongsTo(Category::class ,"category_id");
+        // DOC : https://laravel.com/docs/8.x/eloquent-relationships#one-to-many-inverse
+        return $this->belongsTo(Category::class);
     }
 
 
