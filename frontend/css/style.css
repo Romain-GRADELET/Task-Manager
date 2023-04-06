@@ -191,6 +191,13 @@ button:active {
   padding: 1rem;
   font-size: 1.25rem;
 }
+
+.tasklist em {
+  display: block;
+  font-size: 1rem;
+  color: grey;
+}
+
 .tasklist li .delete, .tasklist li .edit {
   background-repeat: no-repeat;
   background-position: center center;
@@ -212,13 +219,7 @@ button:active {
   background-image: url(../img/edit.png);
 }
 
-.tasklist em {
-  color: red;
-  background-color:#ffac92;
-  border-radius: 10px;
-  padding: 5px;
-  margin-right: 5px;
-}
+
 
 /**
  * Create task container
@@ -300,9 +301,33 @@ form select:focus {
   align-items: center;
   justify-content: center;
 }
+
+
 .modal-dialog.show {
   display: flex;
 }
+
+.modal-dialog > form
+{
+  position: relative;
+}
+
+.modal-dialog > form > .modal-dialog-close-button
+{
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 1rem;
+  background: var( --color-neutral-subtle );
+  border-radius: 0.2rem;
+  color: black;
+  transition: background-color linear 150ms;
+}
+
+.modal-dialog > form > .modal-dialog-close-button:hover {
+  background: var( --color-canvas-subtle );
+}
+
 @media (max-width: 767.98px) {
   .modal-dialog form {
     width: 100%;

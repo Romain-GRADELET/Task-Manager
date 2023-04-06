@@ -1,34 +1,36 @@
 const taskDelete = {
- 
-    handleDeleteTaskInDOM: async function(event){
 
-        // On récupère lélément qui est à l'origine de lévènement
-        const currentElement = event.currentTarget;
-        //console.log (currentElement);
-
-        // On récupère son parent <li>
-        // Ici parentElement foinctionne car il cherche le premier parent
-        //const taskELement = currentElement.parentElement;
-
-        // On récupère la <li> parente
-        // DOC : https://developer.mozilla.org/fr/docs/Web/API/Element/closest
-        let taskELement = currentElement.closest( 'li' ); 
-        console.log (taskELement);
-
-        //récupération de l'id de la tache pour le delete
-        let taskID = taskELement.dataset.id;
-
-        // On supprime la tache dans l'API
-        await taskDelete.deleteTaskFromAPI(taskID);
-
-        // Suppression du DOM de l'élément
-        taskELement.remove();
+    // Fonction appellée lors du clic sur le bouton de suppression
+    handleDeleteButtonClick: async function( event )
+    {
+      console.log( event );
+      
+      // On récupère l'élement cliqué
+      let clickedButtonElement = event.currentTarget;
+      // console.log( clickedButtonElement.parentElement );
+      // console.log( clickedButtonElement.parentNode );
+      
+      // On récupère la <li> parente la plus proche
+      // DOC : https://developer.mozilla.org/fr/docs/Web/API/Element/closest
+      let taskElement = clickedButtonElement.closest( 'li' );
+      // console.log( taskElement );
+  
+      // Récupéréation de l'id de la tache pour le delete
+      let taskID = taskElement.dataset.id;
+  
+      // On supprime la tache dans l'API
+      await taskDelete.deleteTaskFromAPI( taskID );
+  
+      // On retire l'élement du DOM
+      taskElement.remove();
     },
-
-    deleteTaskFromAPI: async function (id){
-
-        let response = await fetch ('http://localhost:8000/api/tasks/'+ id, {method: 'DELETE'});
-        console.log (response);
+  
+    deleteTaskFromAPI: async function( id )
+    {
+      let response = await fetch( 
+        "http://localhost:8000/api/tasks/" + id,  // URL de l'endpoint d'API
+        { method: 'DELETE' }                      // Options du Fetch
+      );
+      console.log( response );
     }
-
-}
+  }
