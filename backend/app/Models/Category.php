@@ -13,10 +13,8 @@ class Category extends Model
     // https://laravel.com/docs/9.x/eloquent#timestamps
     public $timestamp = false;
 
-
-
-    public function tasks(){
-
+    public function tasks()
+    {
         // DOC : https://laravel.com/docs/8.x/eloquent-relationships#one-to-many
         return $this->hasMany(Task::class);
     }

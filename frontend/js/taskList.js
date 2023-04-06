@@ -78,7 +78,7 @@ const taskList = {
   
       let editButtonElement = document.createElement( "div" );
       editButtonElement.classList.add( "edit" );
-      editButtonElement.addEventListener ('click', taskUpdate.handleUpdateButtonClick );
+      //editButtonElement.addEventListener ('click', taskUpdate.handleUpdateButtonClick );
       taskElement.append( editButtonElement );
   
       // Enfin, il ne reste plus qu'à ajouter notre <li> dans la <ul>

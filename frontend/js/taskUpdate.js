@@ -1,11 +1,13 @@
 const taskUpdate = {
-    init: function(){
 
-    },
+    // handleUpdateButtonClick: function(event){
 
-    handleUpdateButtonClick: function(){
+    //     // On récupère l'élément cliqué
+    //     let clickedButtonElement
         
-    }
+    // }
+
+
 
 
 }

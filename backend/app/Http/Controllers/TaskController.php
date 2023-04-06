@@ -12,14 +12,14 @@ class TaskController extends Controller
     // Méthode de lecture de toutes les taches
     public function findAll ()
     {
-        return Task::all()->load("category");
+        return Task::all()->load("category", "tags");
         // retourne les éléments aux formats JSON et le détail de la clé étrangère category
     }
 
     // Méthode de lecture d'une tache précise
     public function find ($id)
     {
-        return Task::findOrFail($id)->load('category');
+        return Task::findOrFail($id)->load('category', "tags");
 
     }
 
@@ -29,7 +29,8 @@ class TaskController extends Controller
         // Grace a l'injection de dépendance on a désormais accès à $request
         // qui contient toutes les infos de la requete HTTP nous ayant conduit dans cette méthode
         // DOC : https://laravel.com/docs/master/requests#retrieving-input
-        $title = $request->input( 'title', 'valeur_Par_Defaut_Optionnel' );
+        $title = $request->input( 'title');
+        $categoryId = $request->input( 'category_id');
 
         // On créé une nouvelle instance du Model
         $newTask = new Task();
@@ -37,7 +38,8 @@ class TaskController extends Controller
         // On définit ses propriétés
         // Ici pas de setter sur les modèles Eloquent, les propriétés sont "publiques"
         $newTask->title = $title;
-
+        $newTask->category_id = $categoryId;
+        
         // Je sauvegarde les changements en BDD
         $newTask->saveOrFail();
 
