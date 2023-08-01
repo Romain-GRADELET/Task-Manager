@@ -5,15 +5,15 @@
  * https://developer.mozilla.org/fr/docs/Web/CSS/Using_CSS_custom_properties
  */
 :root {
-  --color-canvas-default: rgb(255, 255, 255);
+  --color-canvas-default: rgba(255, 255, 255, 0.062);
   --color-canvas-subtle: rgba(255, 255, 255, 0.70);
-  --color-fg-default: rgb(44, 44, 44);
+  --color-fg-default: rgb(85, 83, 83);
   --color-neutral-subtle: rgb(239, 239, 239);
   --color-neutral-muted: rgba(44, 44, 44, 0.5);
   --color-border-subtle: rgba(44, 44, 44, 0.1);
   --color-success-subtle: #29ffcc;
   --color-danger-subtle: #ffac92;
-  --color-attention-subtle: #ffcd29;
+  --color-attention-subtle: #71abcc;
   --color-shadow-medium: 0 5px 0 rgba(44, 44, 44, 0.10);
   --color-btn-primary-bg: rgb(44, 44, 44);
   --color-btn-primary-text: #ffffff;
