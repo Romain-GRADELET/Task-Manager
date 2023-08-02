@@ -39,7 +39,7 @@ class TaskController extends Controller
         // Ici pas de setter sur les modèles Eloquent, les propriétés sont "publiques"
         $newTask->title = $title;
         $newTask->category_id = $categoryId;
-        
+
         // Je sauvegarde les changements en BDD
         $newTask->saveOrFail();
 
@@ -60,6 +60,7 @@ class TaskController extends Controller
     {
         // Récupération du nouveau titre de la tache
         $title = $request->input( 'title' ); // Le 2e argument (valeur par defaut) est optionnel
+        $categoryId = $request->input( 'category_id');
 
         // TODO bonus : Vérifier la validité des données reçues
         // DOC : https://laravel.com/docs/master/validation
@@ -69,12 +70,13 @@ class TaskController extends Controller
 
         // Je modifie ses propriétés par les valeurs de la requête
         $updateTask->title = $title;
+        $updateTask->category_id = $categoryId;
 
         // Je sauvegarde les changements en BDD
         $updateTask->saveOrFail();
 
         // Je retourne la tache fraichement modifiée (automatiquement convertie en JSON encore une fois)
-        return $updateTask;
+        return response()->json($updateTask, response::HTTP_OK);
 
     }
 

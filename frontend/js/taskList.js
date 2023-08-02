@@ -22,18 +22,18 @@ const taskList = {
     // Méthode qui renvoi la liste des taches depuis l'API
     getAllTasksFromAPI: async function()
     {
-      console.log('taskList getAllTasksFromAPI');
+      //console.log('taskList getAllTasksFromAPI');
   
       // On fait une requete à l'API grace à fetch
       let response = await fetch( "http://localhost:8000/api/tasks" );
   
       // Ici comme on a await fetch(), on ne reçoit pas une Promise mais la réponse de l'API
-      console.log( response );
+      //console.log( response );
   
       // Il faut encore lire le JSON de cete réponse, et pour ça, on utilise .json() dessus
       // Attention là encore on reçoit une Promise (de lecture du JSON), il faut aussi la await
       let jsonData = await response.json();
-      console.log( jsonData );
+      //console.log( jsonData );
   
       // Ici, j'ai bien dans jsonData, le contenu de la réponse converti du JSON, je le retourne
       return jsonData;
@@ -54,7 +54,7 @@ const taskList = {
   
       // On définit le contenu textuel de cette nouvelle balise <p> parle titre de la tache
       titleElement.textContent = taskData.title;
-  
+      
       // Il ne faut pas oublier d'indiquer que cette balise doit etre DANS la <li> créé précédemment
       taskElement.append( titleElement );
   
@@ -63,12 +63,13 @@ const taskList = {
       if( taskData.category != null )
       {
         categoryElement.textContent = taskData.category.name;
+        categoryElement.dataset.id = taskData.category.id;
       }
       else
       {
         categoryElement.textContent = "Non catégorisé";
       }
-      titleElement.append( categoryElement );
+      taskElement.append( categoryElement );
   
       // On fait pareil pour les boutons d'action
       let deleteButtonElement = document.createElement( "div" );
@@ -78,7 +79,7 @@ const taskList = {
   
       let editButtonElement = document.createElement( "div" );
       editButtonElement.classList.add( "edit" );
-      //editButtonElement.addEventListener ('click', taskUpdate.handleUpdateButtonClick );
+      editButtonElement.addEventListener ('click', taskUpdate.handleUpdateButtonClick );
       taskElement.append( editButtonElement );
   
       // Enfin, il ne reste plus qu'à ajouter notre <li> dans la <ul>
