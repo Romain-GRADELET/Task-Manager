@@ -6,8 +6,6 @@ const app = {
         taskAdd.init();
         categoryList.init();
     }
-    
 }
-
 // Une fois que le DOM est chargé, on initialise notre module app
 document.addEventListener("DOMContentLoaded", app.init);
