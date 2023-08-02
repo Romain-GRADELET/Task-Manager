@@ -193,9 +193,11 @@ button:active {
 }
 
 .tasklist em {
-  display: block;
+  display: flex;
   font-size: 1rem;
   color: grey;
+  align-items: center;
+  margin-right: 1em;
 }
 
 .tasklist li .delete, .tasklist li .edit {

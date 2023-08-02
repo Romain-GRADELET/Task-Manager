@@ -19,7 +19,7 @@ const categoryList = {
             // On fait une requête à l'API grace à fetch
             let response = await fetch ('http://localhost:8000/api/categories');
             // Ici comme on a await fetch(), on ne reçoit pas une Promise mais la réponse de l'API
-            //console.log(response);S
+            //console.log(response);
     
             // Il faut encore lire le JSON de cet réponse, et pour cela, on utilise .json() dessus
             // Attention là encore on reçoit Une promise (de lecture du JSON), il faut aussi await
